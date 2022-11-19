@@ -6,9 +6,7 @@ const formattedDate = (d) => {
 };
 let dateToday = new Date();
 const tod = formattedDate(dateToday);
-const y = formattedDate(
-  new Date(new Date().setDate(dateToday.getDate() - 1))
-);
+const y = formattedDate(new Date(new Date().setDate(dateToday.getDate() - 1)));
 const tomorrow = formattedDate(
   new Date(new Date().setDate(dateToday.getDate() + 1))
 );
@@ -48,7 +46,7 @@ describe("TodoList Testing", () => {
     markAsComplete(0);
     expect(all[0].completed).toBe(true);
   });
-  test("Should check retrieval of overdue items", () => {
+  test("Should check overdue items", () => {
     a = overdue();
     expect(all[2].dueDate).toBe(a[0]["dueDate"]);
   });
