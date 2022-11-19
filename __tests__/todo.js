@@ -5,48 +5,50 @@ const formattedDate = (d) => {
   return d.toISOString().split("T")[0];
 };
 let dateToday = new Date();
-const tod = formattedDate(dateToday);
-const y = formattedDate(new Date(new Date().setDate(dateToday.getDate() - 1)));
+const today = formattedDate(dateToday);
+const yesterday = formattedDate(
+  new Date(new Date().setDate(dateToday.getDate() - 1))
+);
 const tomorrow = formattedDate(
   new Date(new Date().setDate(dateToday.getDate() + 1))
 );
-describe("TodoList Testing", () => {
+describe("TodoList Test Suite", () => {
   beforeAll(() => {
     add({
-      title: "go to buy goods ",
+      title: "Test todo",
       completed: false,
-      dueDate: tod,
+      dueDate: today,
     });
   });
   test("Should add new todo", () => {
     add(
       {
-        title: "wash shoes",
+        title: "Test todo",
         completed: false,
         dueDate: tomorrow,
         //console.log(dueDate),
       },
       {
-        title: "watch jana gana mana movie",
+        title: "Test todo",
         completed: false,
-        dueDate: y,
+        dueDate: yesterday,
       }
     );
-    const t_count = all.length;
+    const todoItemCount = all.length;
     add({
-      title: "eat dilkush",
+      title: "Test todo",
       completed: false,
-      dueDate: y,
+      dueDate: yesterday,
     });
 
-    expect(all.length).toBe(t_count + 1);
+    expect(all.length).toBe(todoItemCount + 1);
   });
   test("Should mark a todo as complete", () => {
     expect(all[0].completed).toBe(false);
     markAsComplete(0);
     expect(all[0].completed).toBe(true);
   });
-  test("Should check overdue items", () => {
+  test("Should check retrieval of overdue items", () => {
     a = overdue();
     expect(all[2].dueDate).toBe(a[0]["dueDate"]);
   });
